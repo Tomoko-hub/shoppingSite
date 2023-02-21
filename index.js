@@ -10,7 +10,7 @@ const connectDB = require("./utils/database");
 const {ItemModel} = require("./utils/schemaModels");
 
 app.get("/", (req, res)=>{
-    return res.status(200).json("Hello World!");
+    return res.status(200).json("Hello!");
 });
 
 // ITEM functions
@@ -27,7 +27,16 @@ app.post("/item/create", async(req, res)=> {
 })
 
 // Read all Items
-
+app.get("/", async(req, res)=> {
+    try {
+        await connectDB()
+        const allItems = await ItemModel()
+        return res.status(200).json({message: " success read ALL items!", allItems: allItems})
+    }
+    catch (err) {
+        return res.status(400).json({message: "Faild to read ALL items..."})
+    }
+})
 
 // Read Single Item
 
