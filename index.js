@@ -58,12 +58,11 @@ app.get("/item/:_id", async(req, res)=> {
 
 
 // Update Item
-
-app.put("/item/update/:_id", async(req, res)=> {
+app.put("/item/update/:id", async(req, res)=> {
     try {
         await connectDB()
         //const singleItem = 
-        await ItemModel.updateOne({_id:req.params.id})
+        await ItemModel.updateOne({_id:req.params.id}, req.body)
         return res.status(200).json({
             message: "success UPDATE items!",
             //singleItem: singleItem
@@ -77,6 +76,16 @@ app.put("/item/update/:_id", async(req, res)=> {
 
 
 //Delete Item
+app.delete("/item/delete/:id", async(req, res) => {
+    try {
+        await connectDB()
+        await ItemModel.deleteOne({_id:req.params.id})
+        return res.status(200).json({message: "Delete method works!"})
+    }
+    catch (err){
+        return res.status(200).json({message:"Delete does not work..."})
+    }
+})
 
 
 
