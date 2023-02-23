@@ -6,7 +6,7 @@ const auth = async(req, res, next) => {
         return next()
     }
 
-    const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImVtYWlsMUBnbWFpbC5jb20iLCJpYXQiOjE2NzcwOTE0ODcsImV4cCI6MTY3NzE3NDI4N30.cLxaQdJNjlaGUSnoK3HLQJsccYqhRjaczU17pNxYOJM"
+    const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InVzZXIyQGdtYWlsLmNvbSIsImlhdCI6MTY3NzE2OTY1OSwiZXhwIjoxNjc3MjUyNDU5fQ.w5B9WUJxWSA8jMMueW5rvbyjUASJPKqDLuoNzq59A7o"
     //await req.headers.authorization.split("")[1]
     if (!token){
         return res.status(400).json({message: "You need to login again."})
