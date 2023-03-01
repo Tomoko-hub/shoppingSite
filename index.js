@@ -43,10 +43,10 @@ app.get("/", async(req, res)=> {
 })
 
 // Read Single Item
-app.get("/item/:_id", async(req, res)=> {
+app.get("/item/:id", async(req, res)=> {
     try {
         await connectDB()
-        const singleItem = await ItemModel.findById(req.params._id)
+        const singleItem = await ItemModel.findById(req.params.id)
         return res.status(200).json({
             message: "success read SINGLE items!",
             singleItem: singleItem
@@ -127,7 +127,7 @@ app.post("/user/login", async(req, res) => {
             if (req.body.password === savedUseData.password) {
                 const payload = {email: req.body.email}
                 const token = jwt.sign(payload, secret_key, { expiresIn: "23h" })
-                //console.log(token)
+                console.log(token)
                 return res.status(200).json({message: "Login success!", token: token})
             } else {
                 return res.status(400).json({message: "Please put correct password."})
